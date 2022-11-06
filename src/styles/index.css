@@ -1,0 +1,23 @@
+html,
+body,
+#root {
+    height: 100%;
+}
+
+html {
+    font-size: calc(15px + 0.390625vw);
+    box-sizing: border-box;
+    font-size: 100%;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+body {
+    background-color: black;
+    margin: 0;
+    padding: 0;
+}
