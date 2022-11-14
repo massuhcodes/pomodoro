@@ -33,27 +33,12 @@ export function openPomodoroSettings() {
     }, 100);
 }
 
-export function updateTypeDuration(type, action) {
-    const typeDurationEl = document.getElementById(`${type}-duration`);
-    const amount =
-        parseInt(typeDurationEl.textContent) +
-        (action === "increment" ? 1 : -1);
-    if (amount > 0) typeDurationEl.textContent = amount;
-}
-
-export function updateTypeChoice(type, choice) {
-    const typeChoice = document.getElementById(`${type}-${choice}`);
-    // reset everything
-    [1, 2, 3].map((index) => {
-        const typeChoice = document.getElementById(`${type}-${index}`);
-        if (type === "font") {
-            typeChoice.style.backgroundColor = "#EFF1FA";
-            typeChoice.style.color = "#1E213F";
-        } else typeChoice.innerHTML = "";
+export function updateWithTimeSetter(action, setter) {
+    setter((prevDuration) => {
+        if (action === "decrement") {
+            const updatedDuration = prevDuration - 1;
+            return updatedDuration > 0 ? updatedDuration : prevDuration;
+        }
+        return prevDuration + 1;
     });
-    // modify selected
-    if (type === "font") {
-        typeChoice.style.backgroundColor = "#161932";
-        typeChoice.style.color = "#fff";
-    } else typeChoice.innerHTML = `<img src=${checkmark} />`;
 }
